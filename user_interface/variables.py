@@ -6,6 +6,8 @@ class Inputs():
         self.objednavka_id = None
         self.produkt_id = None
         self.volba = None
+        self.nazev_souboru = None
+        self.nazev_tabulky = None
 
     def get_mnozstvi(self):
         """
@@ -90,9 +92,25 @@ class Inputs():
         while True:
             try:
                 self.volba = int(input("Zadejte číslo volby: "))
-                if self.volba <= 0 or self.volba > 5:
+                if self.volba <= 0 or self.volba > 8:
                     raise Exception
                 break
             except Exception:
-                print("Číslo volby musí být kladné číslo od 1 do 5")
+                print("Číslo volby musí být kladné číslo od 1 do 8")
         return self.volba
+
+    def get_nazev_souboru(self):
+        """
+        Získá název souboru
+        :return: Název souboru
+        """
+        self.nazev_souboru = input("Zadejte název souboru: ")
+        return self.nazev_souboru
+
+    def get_nazev_tabulky(self):
+        """
+        Získá název tabulky
+        :return: Název tabulky
+        """
+        self.nazev_tabulky = input("Zadejte název tabulky: ")
+        return self.nazev_tabulky

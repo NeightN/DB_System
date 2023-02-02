@@ -1,5 +1,6 @@
 from database_commands.commands import Commands
 from user_interface.variables import Inputs
+from imports.csv_import import CSV_Import
 
 class Menu():
     def __init__(self):
@@ -11,7 +12,10 @@ class Menu():
             "(2)": "Smazaní objednávky s objednanými položkami",
             "(3)": "Úprava objednávky",
             "(4)": "Výpis reportu",
-            "(5)": "Konec",
+            "(5)": "View1",
+            "(6)": "View2",
+            "(8)": "Import z CSV",
+            "(9)": "Konec",
             "*": "================== END MENU ================== *"
         }
 
@@ -57,6 +61,14 @@ class Menu():
             elif vstup == 4:
                 self.command.select_pro_report()
             elif vstup == 5:
+                self.command.select_view1()
+            elif vstup == 6:
+                self.command.select_view2()
+            elif vstup == 7:
+                nazev_souboru = self.variable.get_nazev_souboru()
+                nazev_tabulky = self.variable.get_nazev_tabulky()
+                CSV_Import().csv_import(nazev_souboru, nazev_tabulky)
+            elif vstup == 8:
                 print("Ukončuji program, brzy na viděnou!")
                 break
             else:
