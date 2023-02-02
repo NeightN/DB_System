@@ -105,7 +105,7 @@ class Commands():
         self.cursor.execute("COMMIT")
         self.connection = config.close_connection()
 
-    def insert_nova_objednavka_s_dvema_polozkama(self, zakaznik, polozka1, polozka2, mnozstvi1, mnozstvi2):
+    def insert_nova_objednavka_se_dvema_polozkama(self, zakaznik, polozka1, polozka2, mnozstvi1, mnozstvi2):
         """
         Vloží objednávku s položkama do databáze
         :param zakaznik: zákazník

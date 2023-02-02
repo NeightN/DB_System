@@ -1,9 +1,8 @@
-from database_commands.commands import Commands
+from user_interface.menu import Menu
 
 def main():
-    command = Commands()
-    kategorie = "fgh"
-    command.insert_kategorie(kategorie)
+    menu = Menu()
+    menu.complete_menu()
 
 if __name__ == '__main__':
     main()
