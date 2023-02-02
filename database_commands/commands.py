@@ -125,7 +125,7 @@ class Commands():
         self.cursor.execute("COMMIT")
         self.connection = config.close_connection()
 
-    def delete_objednani_polozky(self, objednavka_id):
+    def delete_objednavka_s_objednanymi_polozkami(self, objednavka_id):
         """
         Smazání obednávky s objednanýma položkama
         :param objednavka_id: objednávka
@@ -156,7 +156,6 @@ class Commands():
         self.connection = config.close_connection()
 
     def select_pro_report(self):
-        # Agregace dat z tabulek zakaznik, objednavka a objednani_polozky
         sql = "SELECT zakaznik.mesto, SUM(objednani_polozky.mnozstvi * produkt.cena) AS soucet_nakupu " \
               "FROM zakaznik " \
               "JOIN objednavka ON zakaznik.id = objednavka.zakaznik_id " \
