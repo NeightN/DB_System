@@ -37,5 +37,3 @@ class Config():
         :return: uzavřené spojení
         """
         return self.connection.close()
-
-    
