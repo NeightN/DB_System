@@ -12,10 +12,10 @@ class Menu():
             "(2)": "Smazaní objednávky s objednanými položkami",
             "(3)": "Úprava objednávky",
             "(4)": "Výpis reportu",
-            "(5)": "View1",
-            "(6)": "View2",
-            "(8)": "Import z CSV",
-            "(9)": "Konec",
+            "(5)": "Výpis nejprodávanějších produktů",
+            "(6)": "Výpis objednávek zákazníků",
+            "(7)": "Import z CSV",
+            "(8)": "Konec",
             "*": "================== END MENU ================== *"
         }
 
@@ -61,9 +61,9 @@ class Menu():
             elif vstup == 4:
                 self.command.select_pro_report()
             elif vstup == 5:
-                self.command.select_view1()
+                self.command.view_nejprodavanejsi_produkty()
             elif vstup == 6:
-                self.command.select_view2()
+                self.command.view_objdenavky_zakazniku()
             elif vstup == 7:
                 nazev_souboru = self.variable.get_nazev_souboru()
                 nazev_tabulky = self.variable.get_nazev_tabulky()

@@ -74,6 +74,10 @@ class Commands():
         self.connection = config.close_connection()
 
     def select_pro_report(self):
+        """
+        Výběr pro report
+        :return: None
+        """
         sql = "SELECT zakaznik.mesto, SUM(objednani_polozky.mnozstvi * produkt.cena) AS soucet_nakupu FROM zakaznik JOIN objednavka ON zakaznik.id = objednavka.zakaznik_id JOIN objednani_polozky ON objednavka.id = objednani_polozky.objednavka_id JOIN produkt ON produkt.id = objednani_polozky.produkt_id GROUP BY zakaznik.mesto"
 
         config = Config()
@@ -88,5 +92,48 @@ class Commands():
         print("-------------------------------------------------")
         for result in results:
             print(f"{result[0]}\t\t{int(result[1])}" + " Kč")
+        print("-------------------------------------------------")
+        self.connection = config.close_connection()
+
+    def view_nejprodavanejsi_produkty(self):
+        """
+        Výpis nejprodávanějších produktů
+        :return: None
+        """
+        sql = "SELECT * FROM v_nejprodavanejsi_produkty;";
+        config = Config()
+        self.connection = config.get_connection()
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(sql)
+        results = self.cursor.fetchall()
+        print("-------------------------------------------------")
+        print("Nejprodávanější produkty")
+        print("-------------------------------------------------")
+        print("Název\t\t\t\t\t\t\t\tMnožství")
+        print("-------------------------------------------------")
+        for result in results:
+            print("{:<30}{:>10}".format(result[0], int(result[1])))
+        print("-------------------------------------------------")
+        self.connection = config.close_connection()
+
+    def view_objdenavky_zakazniku(self):
+        """
+        Výpis objednávek zákazníků
+        :return: None
+        """
+        sql = "SELECT * FROM v_objdenavky_zakazniku;";
+        config = Config()
+        self.connection = config.get_connection()
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(sql)
+        results = self.cursor.fetchall()
+        print("-------------------------------------------------")
+        print("Objednávky zákazníků")
+        print("-------------------------------------------------")
+        print("Jméno\t\t\t\tID\t\t\tDatum objednávky")
+        print("-------------------------------------------------")
+        for result in results:
+            print("{:<20}{:<11}{:>20}".format(result[0], int(result[1]), result[2].strftime("%Y-%m-%d %H:%M:%S")))
+
         print("-------------------------------------------------")
         self.connection = config.close_connection()
